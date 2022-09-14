@@ -7,13 +7,21 @@
     <title>Calculator</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="cal-body">
             <form action="" name="calculator">
-                
+                <div class="cal-sreen row">
+                    <div class="col-md-12 p-0">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="4" id="total" type="text" name="answer">0</textarea>
+                        </div>
+                    </div>
+                </div>
                 <div class="cal-button-row">
                     <!-- 1 -->
                     <div class="row">
@@ -27,19 +35,19 @@
                             <button type="button" class="btn btn-out">C</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">&#9003;</button type="button" class="btn">
+                            <button type="button" class="btn btn-out"><i class="bi bi-backspace"></i></button type="button" class="btn">
                         </div>
                     </div>
                     <!-- 2 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">1/x</button type="button" class="btn">
+                            <button type="button" class="btn btn-out" disabled>1/x</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">x2</button type="button" class="btn">
+                            <button type="button" class="btn btn-out" disabled>x2</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">2x</button type="button" class="btn">
+                            <button type="button" class="btn btn-out" disabled>2x</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out">&divide;</button type="button" class="btn">
