@@ -18,7 +18,7 @@
                 <div class="cal-sreen row">
                     <div class="col-md-12 p-0">
                         <div class="form-group">
-                            <textarea class="form-control" rows="4" id="total" type="text" name="answer">0</textarea>
+                            <textarea class="form-control" rows="4" id="total" type="text" name="answer"></textarea>
                         </div>
                     </div>
                 </div>
@@ -56,13 +56,13 @@
                     <!-- 3 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn">7</button type="button" class="btn">
+                            <button type="button" class="btn" value="7" onclick="calculator.answer.value +='7' ">7</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn">8</button type="button" class="btn">
+                            <button type="button" class="btn" value="8" onclick="calculator.answer.value +='8' ">8</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn">9</button type="button" class="btn">
+                            <button type="button" class="btn" value="9" onclick="calculator.answer.value +='9' ">9</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out">x</button type="button" class="btn">
@@ -71,28 +71,28 @@
                     <!-- 4 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn">4</button type="button" class="btn">
+                            <button type="button" class="btn" value="4" onclick="calculator.answer.value +='4' ">4</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn">5</button type="button" class="btn">
+                            <button type="button" class="btn" value="5" onclick="calculator.answer.value +='5' ">5</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn">6</button type="button" class="btn">
+                            <button type="button" class="btn" value="6" onclick="calculator.answer.value +='6' ">6</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">-</button type="button" class="btn">
+                            <button type="button" class="btn btn-out" >-</button type="button" class="btn">
                         </div>
                     </div>
                     <!-- 5 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn">1</button type="button" class="btn">
+                            <button type="button" class="btn" value="1" onclick="calculator.answer.value +='1' ">1</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn">2</button type="button" class="btn">
+                            <button type="button" class="btn" value="2" onclick="calculator.answer.value +='2' ">2</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3 g-2">
-                            <button type="button" class="btn">3</button type="button" class="btn">
+                            <button type="button" class="btn" value="3" onclick="calculator.answer.value +='3' ">3</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out">+</button type="button" class="btn">
@@ -104,10 +104,10 @@
                             <button type="button" class="btn">+/-</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn">0</button type="button" class="btn">
+                            <button type="button" class="btn" value="0" onclick="calculator.answer.value +='0' ">0</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn">.</button type="button" class="btn">
+                            <button type="button" class="btn" value=".">.</button type="button" class="btn">
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out btn-equal">=</button type="button" class="btn">
@@ -116,7 +116,9 @@
                 </div>
             </form>
         </div>
-       
     </div>
+    <script type="text/javascript">
+        
+    </script>
 </body>
 </html>
