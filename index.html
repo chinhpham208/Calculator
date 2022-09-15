@@ -51,7 +51,7 @@
                             <button type="button" class="btn btn-out" disabled>2x</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="/" id="button-divide" class="btn btn-out">&divide;</button>
+                            <button type="button" onclick="divide()" id="button-divide" class="btn btn-out">&divide;</button>
                         </div>
                     </div>
                     <!-- 3 -->
@@ -127,6 +127,7 @@
 
         function clearAllResult(){
             total.value ='';
+            topOperation.innerText='';
         }
         
         //get number from button
@@ -196,6 +197,20 @@
             }
             else{
                 topOperation.innerText = `${total.value}  x`;
+                total.value='';
+            }
+        }
+
+        function divide(){
+            let divide = topOperation.innerText.split(' ')[0];
+            if(total.value === '') return;
+            if(topOperation.innerText !== ''){
+                divide = convertToNum(divide) / convertToNum(total.value);
+                total.value = '';
+                topOperation.innerText = `${totalFormat(divide.toString())}  /`;
+            }
+            else{
+                topOperation.innerText = `${total.value}  /`;
                 total.value='';
             }
         }
