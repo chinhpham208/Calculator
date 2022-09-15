@@ -18,7 +18,7 @@
                 <div class="cal-sreen row">
                     <div class="col-md-12 p-0">
                         <div class="form-group">
-                            <div class="top-operation">10999998  +</div>
+                            <div class="top-operation"></div>
                             <input type="text" class="form-control" rows="4" id="total" type="text" name="answer">
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             <button type="button" value="3" onclick="getVal(value)" class="btn btn-number">3</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="+" id="button-add" class="btn btn-out">+</button>
+                            <button type="button" value="+" onclick="add()" id="button-add" class="btn btn-out">+</button>
                         </div>
                     </div>
                     <!-- 6 -->
@@ -121,7 +121,7 @@
     <script type="text/javascript">
         const total = document.querySelector('#total');
         const clearAll = document.querySelector('#clear-all');
-
+        const topOperation = document.querySelector('.top-operation');
         // click "C" button to clear all result panel
         clearAll.addEventListener('click',clearAllResult)
 
@@ -132,13 +132,12 @@
         //get number from button
         function getVal(val){
             let string= total.value + val;
-            let array = (string).split(',');
-            total.value = totalFormat(array);
+            total.value = totalFormat(string);
         }
         
         //format the total display  
-        function totalFormat(array){
-            const stringTotal = array.join('');
+        function totalFormat(string){
+            const stringTotal = string.split(',').join('');
             const interger = parseFloat(stringTotal.split('.')[0]);
             const decimal = stringTotal.split('.')[1];
             let intergerDisplay;
@@ -153,6 +152,23 @@
             }
             else{
                 return intergerDisplay;
+            }
+        }
+        function convertToNum(string){
+           
+            return parseFloat(string.split(',').join(''));
+        }
+        function add(){
+            let sum = topOperation.innerText.split(' ')[0];
+            if(total.value === '') return;
+            if(topOperation.innerText !== ''){
+                sum = convertToNum(sum) + convertToNum(total.value);
+                total.value = '';
+                topOperation.innerText = `${totalFormat(sum.toString())}  +`;
+            }
+            else{
+                topOperation.innerText = `${total.value}  +`;
+                total.value='';
             }
         }
         
