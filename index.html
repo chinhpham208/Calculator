@@ -81,7 +81,7 @@
                             <button type="button" value="6" onclick="getVal(value)" class="btn btn-number">6</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="-" id="button-substract" class="btn btn-out" >-</button>
+                            <button type="button" value="-" onclick="substract()" id="button-substract" class="btn btn-out" >-</button>
                         </div>
                     </div>
                     <!-- 5 -->
@@ -168,6 +168,20 @@
             }
             else{
                 topOperation.innerText = `${total.value}  +`;
+                total.value='';
+            }
+        }
+
+        function substract(){
+            let substract = topOperation.innerText.split(' ')[0];
+            if(total.value === '') return;
+            if(topOperation.innerText !== ''){
+                substract = convertToNum(substract) - convertToNum(total.value);
+                total.value = '';
+                topOperation.innerText = `${totalFormat(substract.toString())}  -`;
+            }
+            else{
+                topOperation.innerText = `${total.value}  -`;
                 total.value='';
             }
         }
