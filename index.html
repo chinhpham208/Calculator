@@ -32,7 +32,7 @@
                             <button type="button" class="btn btn-out">CE</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">C</button>
+                            <button type="button"  id="clear-all" class="btn btn-out">C</button>
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out"><i class="bi bi-backspace"></i></button>
@@ -119,14 +119,23 @@
     </div>
     <script type="text/javascript">
         const total = document.querySelector('#total');
+        const clearAll = document.querySelector('#clear-all');
+
+        // click "C" button to clear all result panel
+        clearAll.addEventListener('click',clearAllResult)
+
+        function clearAllResult(){
+            total.value ='';
+        }
        
-       
+        //get number from button
         function getVal(val){
             let string= total.value + val;
             let array = (string).split(',');
             total.value = totalFormat(array);
         }
 
+        //format the total display  
         function totalFormat(array){
             const stringTotal = array.join('');
             const interger = parseFloat(stringTotal.split('.')[0]);
