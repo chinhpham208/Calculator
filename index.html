@@ -18,7 +18,7 @@
                 <div class="cal-sreen row">
                     <div class="col-md-12 p-0">
                         <div class="form-group">
-                            <textarea class="form-control" rows="4" id="total" type="text" name="answer"></textarea>
+                            <input type="text" class="form-control" rows="4" id="total" type="text" name="answer">
                         </div>
                     </div>
                 </div>
@@ -26,91 +26,91 @@
                     <!-- 1 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">%</button type="button" class="btn">
+                            <button type="button" class="btn btn-out">%</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">CE</button type="button" class="btn">
+                            <button type="button" class="btn btn-out">CE</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">C</button type="button" class="btn">
+                            <button type="button" class="btn btn-out">C</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out"><i class="bi bi-backspace"></i></button type="button" class="btn">
+                            <button type="button" class="btn btn-out"><i class="bi bi-backspace"></i></button>
                         </div>
                     </div>
                     <!-- 2 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out" disabled>1/x</button type="button" class="btn">
+                            <button type="button" class="btn btn-out" disabled>1/x</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out" disabled>x2</button type="button" class="btn">
+                            <button type="button" class="btn btn-out" disabled>x2</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out" disabled>2x</button type="button" class="btn">
+                            <button type="button" class="btn btn-out" disabled>2x</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">&divide;</button type="button" class="btn">
+                            <button type="button" id="button-divide" class="btn btn-out">&divide;</button>
                         </div>
                     </div>
                     <!-- 3 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="7" onclick="calculator.answer.value +='7' ">7</button type="button" class="btn">
+                            <button type="button" value="7" onclick="getVal(value)" class="btn btn-number">7</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="8" onclick="calculator.answer.value +='8' ">8</button type="button" class="btn">
+                            <button type="button" value="8" onclick="getVal(value)" class="btn btn-number">8</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="9" onclick="calculator.answer.value +='9' ">9</button type="button" class="btn">
+                            <button type="button" value="9" onclick="getVal(value)" class="btn btn-number">9</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">x</button type="button" class="btn">
+                            <button type="button" id="button-multiply" class="btn btn-out">x</button>
                         </div>
                     </div>
                     <!-- 4 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="4" onclick="calculator.answer.value +='4' ">4</button type="button" class="btn">
+                            <button type="button" value="4" onclick="getVal(value)" class="btn btn-number">4</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="5" onclick="calculator.answer.value +='5' ">5</button type="button" class="btn">
+                            <button type="button" value="5" onclick="getVal(value)" class="btn btn-number">5</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="6" onclick="calculator.answer.value +='6' ">6</button type="button" class="btn">
+                            <button type="button" value="6" onclick="getVal(value)" class="btn btn-number">6</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out" >-</button type="button" class="btn">
+                            <button type="button" id="button-substract" class="btn btn-out" >-</button>
                         </div>
                     </div>
                     <!-- 5 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="1" onclick="calculator.answer.value +='1' ">1</button type="button" class="btn">
+                            <button type="button" value="1" onclick="getVal(value)" class="btn btn-number">1</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="2" onclick="calculator.answer.value +='2' ">2</button type="button" class="btn">
+                            <button type="button" value="2" onclick="getVal(value)" class="btn btn-number">2</button>
                         </div>
                         <div class="col-xs-3 g-2">
-                            <button type="button" class="btn" value="3" onclick="calculator.answer.value +='3' ">3</button type="button" class="btn">
+                            <button type="button" value="3" onclick="getVal(value)" class="btn btn-number">3</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">+</button type="button" class="btn">
+                            <button type="button" id="button-add" class="btn btn-out">+</button>
                         </div>
                     </div>
                     <!-- 6 -->
                     <div class="row">
                         <div class="col-xs-3">
-                            <button type="button" class="btn">+/-</button type="button" class="btn">
+                            <button type="button" class="btn">+/-</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value="0" onclick="calculator.answer.value +='0' ">0</button type="button" class="btn">
+                            <button type="button" value="0" onclick="getVal(value)" class="btn btn-number">0</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn" value=".">.</button type="button" class="btn">
+                            <button type="button" value="." onclick="getVal(value)" class="btn btn-number">.</butto>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out btn-equal">=</button type="button" class="btn">
+                            <button type="button" class="btn btn-out btn-equal">=</button>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,33 @@
         </div>
     </div>
     <script type="text/javascript">
-        
+        const total = document.querySelector('#total');
+       
+       
+        function getVal(val){
+            let string= total.value + val;
+            let array = (string).split(',');
+            total.value = totalFormat(array);
+        }
+
+        function totalFormat(array){
+            const stringTotal = array.join('');
+            const interger = parseFloat(stringTotal.split('.')[0]);
+            const decimal = stringTotal.split('.')[1];
+            let intergerDisplay;
+            if(isNaN(interger)){
+                intergerDisplay='';
+            }else{
+                intergerDisplay = interger.toLocaleString('en',{maximumFractionDigits: 0})
+            }
+
+            if(decimal != null){
+                return `${intergerDisplay}.${decimal}`;
+            }
+            else{
+                return intergerDisplay;
+            }
+        }
     </script>
 </body>
 </html>

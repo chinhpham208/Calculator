@@ -31,9 +31,7 @@
     position: absolute;
     
 }
-textarea{
-    resize: none;
-}
+
 
 button{
     min-width: 140px;
