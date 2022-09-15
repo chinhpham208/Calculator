@@ -51,7 +51,7 @@
                             <button type="button" class="btn btn-out" disabled>2x</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" onclick="divide()" id="button-divide" class="btn btn-out">&divide;</button>
+                            <button type="button" value="/" onclick="divide(value)" id="button-divide" class="btn btn-out">&divide;</button>
                         </div>
                     </div>
                     <!-- 3 -->
@@ -66,7 +66,7 @@
                             <button type="button" value="9" onclick="getVal(value)" class="btn btn-number">9</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" onclick="multiply()" id="button-multiply" class="btn btn-out">x</button>
+                            <button type="button" value="*" onclick="multiply(value)" id="button-multiply" class="btn btn-out">x</button>
                         </div>
                     </div>
                     <!-- 4 -->
@@ -81,7 +81,7 @@
                             <button type="button" value="6" onclick="getVal(value)" class="btn btn-number">6</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" onclick="substract()" id="button-substract" class="btn btn-out" >-</button>
+                            <button type="button" value="-" onclick="substract(value)" id="button-substract" class="btn btn-out" >-</button>
                         </div>
                     </div>
                     <!-- 5 -->
@@ -96,7 +96,7 @@
                             <button type="button" value="3" onclick="getVal(value)" class="btn btn-number">3</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" onclick="add()" id="button-add" class="btn btn-out">+</button>
+                            <button type="button" value="+" onclick="add(value)" id="button-add" class="btn btn-out">+</button>
                         </div>
                     </div>
                     <!-- 6 -->
@@ -111,7 +111,7 @@
                             <button type="button" value="." onclick="getVal(value)" class="btn btn-number">.</butto>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out btn-equal">=</button>
+                            <button type="button" onclick="equal()" class="btn btn-out btn-equal">=</button>
                         </div>
                     </div>
                 </div>
@@ -122,9 +122,10 @@
         const total = document.querySelector('#total');
         const clearAll = document.querySelector('#clear-all');
         const topOperation = document.querySelector('.top-operation');
+        let operaton = undefined;
         // click "C" button to clear all result panel
         clearAll.addEventListener('click',clearAllResult)
-
+      
         function clearAllResult(){
             total.value ='';
             topOperation.innerText='';
@@ -132,6 +133,7 @@
         
         //get number from button
         function getVal(val){
+            total.value = '';
             let string= total.value + val;
             total.value = totalFormat(string);
         }
@@ -159,63 +161,75 @@
            
             return parseFloat(string.split(',').join(''));
         }
-        function add(){
+        function add(val){
+            operation = val;
             let sum = topOperation.innerText.split(' ')[0];
             if(total.value === '') return;
             if(topOperation.innerText !== ''){
                 sum = convertToNum(sum) + convertToNum(total.value);
                 total.value = '';
-                topOperation.innerText = `${totalFormat(sum.toString())}  +`;
+                topOperation.innerText = `${totalFormat(sum.toString())}  ${operation}`;
             }
             else{
-                topOperation.innerText = `${total.value}  +`;
+                topOperation.innerText = `${total.value}  ${operation}`;
                 total.value='';
             }
         }
 
-        function substract(){
+        function substract(val){
+            operation = val;
             let substract = topOperation.innerText.split(' ')[0];
             if(total.value === '') return;
             if(topOperation.innerText !== ''){
                 substract = convertToNum(substract) - convertToNum(total.value);
                 total.value = '';
-                topOperation.innerText = `${totalFormat(substract.toString())}  -`;
+                topOperation.innerText = `${totalFormat(substract.toString())}  ${operation}`;
             }
             else{
-                topOperation.innerText = `${total.value}  -`;
+                topOperation.innerText = `${total.value}  ${operation}`;
                 total.value='';
             }
         }
 
-        function multiply(){
+        function multiply(value){
+            operation = val;
             let multiply = topOperation.innerText.split(' ')[0];
             if(total.value === '') return;
             if(topOperation.innerText !== ''){
                 multiply = convertToNum(multiply) * convertToNum(total.value);
                 total.value = '';
-                topOperation.innerText = `${totalFormat(multiply.toString())}  x`;
+                topOperation.innerText = `${totalFormat(multiply.toString())}  ${operation}`;
             }
             else{
-                topOperation.innerText = `${total.value}  x`;
+                topOperation.innerText = `${total.value}  ${operation}`;
                 total.value='';
             }
         }
 
-        function divide(){
+        function divide(val){
+            operation = val;
             let divide = topOperation.innerText.split(' ')[0];
             if(total.value === '') return;
             if(topOperation.innerText !== ''){
                 divide = convertToNum(divide) / convertToNum(total.value);
                 total.value = '';
-                topOperation.innerText = `${totalFormat(divide.toString())}  /`;
+                topOperation.innerText = `${totalFormat(divide.toString())}  ${operation}`;
             }
             else{
-                topOperation.innerText = `${total.value}  /`;
+                topOperation.innerText = `${total.value}  ${operation}`;
                 total.value='';
             }
         }
+
         
-        
+        function equal(){
+            if(total.value==='' || topOperation.innerText==='') return;
+            else{
+                total.value =eval( `${total.value} ${operation} ${topOperation.innerText.split(' ')[0]}`);
+                console.log(total.value)
+                topOperation.innerText ='';
+            }
+        }
     </script>
 </body>
 </html>
