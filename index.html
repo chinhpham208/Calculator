@@ -36,7 +36,7 @@
                             <button type="button"  id="clear-all" class="btn btn-out">C</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out"><i class="bi bi-backspace"></i></button>
+                            <button type="button" onclick="remove()" class="btn btn-out"><i class="bi bi-backspace"></i></button>
                         </div>
                     </div>
                     <!-- 2 -->
@@ -133,7 +133,6 @@
         
         //get number from button
         function getVal(val){
-            total.value = '';
             let string= total.value + val;
             total.value = totalFormat(string);
         }
@@ -191,7 +190,7 @@
             }
         }
 
-        function multiply(value){
+        function multiply(val){
             operation = val;
             let multiply = topOperation.innerText.split(' ')[0];
             if(total.value === '') return;
@@ -225,8 +224,8 @@
         function equal(){
             if(total.value==='' || topOperation.innerText==='') return;
             else{
-                total.value =eval( `${total.value} ${operation} ${topOperation.innerText.split(' ')[0]}`);
-                console.log(total.value)
+                total.value =eval( ` ${topOperation.innerText.split(' ')[0].split(',').join('')} ${operation} ${total.value} `);
+                total.value = totalFormat(total.value);
                 topOperation.innerText ='';
             }
         }
@@ -236,11 +235,15 @@
         }
         total.addEventListener('input',(temp)=>{
             temp = total.value;
-            console.log(typeof(temp[temp.length-1]));
             if(checkInput(temp[temp.length-1]) == false){
                 total.value = temp.substring(0,temp.length-1);
             }
         })
+
+        function remove(){
+            total.value = total.value.substring(0,total.value.length -1);
+        }
+        
     </script>
 </body>
 </html>
