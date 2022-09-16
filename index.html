@@ -230,6 +230,17 @@
                 topOperation.innerText ='';
             }
         }
+        function checkInput(string){
+            let regexPattern = /^[0-9()+\-*.\/]*$/g;
+            return regexPattern.test(string)
+        }
+        total.addEventListener('input',(temp)=>{
+            temp = total.value;
+            console.log(typeof(temp[temp.length-1]));
+            if(checkInput(temp[temp.length-1]) == false){
+                total.value = temp.substring(0,temp.length-1);
+            }
+        })
     </script>
 </body>
 </html>
