@@ -1,40 +1,51 @@
-
-.cal-body {
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
+.container{
+    min-height: 100vh;
+    
+}
+.cal-body{
     position: relative;
-    width: 573px;
-    height: 860px;
+    width: 574px;
+    height: 855px;
     margin: auto;
+    padding: 2px;
     overflow: hidden;
-    box-shadow: 0 8px 50px -7px black;
-    box-sizing: border-box;
-    font-weight: 400;
     background: #eff4f9;
-    font-weight: bold;
     font-size: 1.5rem;
-    
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 3px;
+
+    box-shadow: 0px 0px 38px 4px rgb(205, 205, 205);
+    -webkit-box-shadow: 0px 0px 38px 4px rgb(205, 205, 205);
+    -moz-box-shadow: 0px 0px 38px 4px rgb(205, 205, 205);
 }
-.cal-buttton-row{
+#calculator{
+    min-height: 100%;
+}
+
+
+.result-panel{
+    height: 250px;
+    background-color:#eff4f9;
+    font-size: 5rem;
+    font-weight: 500;
+}
+cal-screen{
     position: absolute;
-    
 }
-button{
-    min-width: 140px;
+
+.btn{
+    font-size: 1.5rem;
+    width: 140px;
     height: 95px;
-    margin: 2px;
+    margin: 1px;
     text-align: center;
     background-color: #fff;
     color: black;
-  
-    box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 5px -2px rgba(0,0,0,0.75);
-}
-.btn{
-    font-size: 1.5rem;
-    font-style:bold;
+    box-shadow: 0px 0px 5px -5px rgb(205,205,205);
+    -webkit-box-shadow: 0px 0px 5px -5px rgb(205,205,205);
+    -moz-box-shadow: 0px 0px 5px -5px rgb(205,205,205);
+
+    border: 1px solid rgb(224, 224, 224)
 }
 .btn-out{
     background-color: #f7f9fc;
@@ -43,7 +54,4 @@ button{
     background-color: #0067c0;
     color: white;
     
-}
-.row{
-    margin-left: 0;
 }
