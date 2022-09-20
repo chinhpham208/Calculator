@@ -1,7 +1,6 @@
 .container{
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
+    
 }
 .cal-body{
     position: relative;
@@ -10,9 +9,7 @@
     margin: auto;
     padding: 2px;
     overflow: hidden;
-    box-shadow: 0 8px 50px -7px black;
     background: #eff4f9;
-    font-weight: bold;
     font-size: 1.5rem;
     border: 1px solid rgb(180, 180, 180);
     border-radius: 3px;
@@ -23,41 +20,27 @@
 }
 #calculator{
     min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 
 .result-panel{
-    width: 100%;
     height: 250px;
     background-color:#eff4f9;
-    border: none;
-    text-align: end;
     font-size: 5rem;
+    font-weight: 500;
 }
 cal-screen{
     position: absolute;
 }
-.cal-buttton-row{
-    position: absolute;
-    width: 100%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .btn{
     font-size: 1.5rem;
-    font-style:bold;
     width: 140px;
     height: 95px;
     margin: 1px;
     text-align: center;
     background-color: #fff;
     color: black;
-
     box-shadow: 0px 0px 5px -5px rgb(205,205,205);
     -webkit-box-shadow: 0px 0px 5px -5px rgb(205,205,205);
     -moz-box-shadow: 0px 0px 5px -5px rgb(205,205,205);
