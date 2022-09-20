@@ -32,7 +32,7 @@
                             <button type="button" class="btn btn-out">CE</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button"  id="clear-all" class="btn btn-out">C</button>
+                            <button type="button" id="clear-all" class="btn btn-out">C</button>
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out"><i class="bi bi-backspace"></i></button>
@@ -120,11 +120,11 @@
     <script type="text/javascript">
         const total = document.querySelector('#total');
         const numberButtons = document.querySelectorAll('.btn-num');
+        const allClearButton = document.querySelector('#clear-all');
 
         function Calculator(result){
             this.result = result;
-            this.currentResult = '';
-            
+            this.currentResult='';
             this.appendNum = function(num){
                 // The length of number only = 16
                 if(this.currentResult.length === 16) return;
@@ -138,14 +138,21 @@
             }
             // method format the interger part
             this.formatNum = function(stringNum){
+                if(stringNum=='') return '';
                 const intergerDigit = parseFloat(stringNum.split('.')[0]);
                 const decimalDigit = stringNum.split('.')[1];
                 let numFormatted;
+
                 numFormatted = intergerDigit.toLocaleString('en',{maximumFractionDigits: 0});
+
                 if(decimalDigit!= null){
                     return `${numFormatted}.${decimalDigit}`;
                 }
                 else{ return numFormatted;}
+            }
+
+            this.clearAllResult = function (){
+                this.currentResult='';
             }
             
         }
@@ -155,6 +162,11 @@
                 calculator.appendNum(button.value);
                 calculator.displayNum();
             })
+        })
+
+        allClearButton.addEventListener('click',()=>{
+            calculator.clearAllResult();
+            calculator.displayNum();
         })
         
     </script>
