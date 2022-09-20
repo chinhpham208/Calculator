@@ -1,3 +1,4 @@
+
 .container{
     min-height: 100vh;
     
@@ -24,9 +25,10 @@
 
 
 .result-panel{
+    --fontSizeResult : 5rem;
     height: 250px;
     background-color:#eff4f9;
-    font-size: 5rem;
+    font-size: var(--fontSizeResult);
     font-weight: 500;
 }
 cal-screen{

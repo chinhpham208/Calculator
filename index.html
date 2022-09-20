@@ -120,6 +120,7 @@
     <script type="text/javascript">
         const total = document.querySelector('#total');
         const numberButtons = document.querySelectorAll('.btn-num');
+        console.log(typeof(fontSizeResult))
         class Calculator{
             constructor(result){
                 this.result = result;
@@ -127,6 +128,8 @@
             }
            
             appendNum(num){
+                //Only 16 digits are allowed
+                if(this.result.value.length === 16) return;
                 this.currentResult += num;
             }
 
@@ -135,7 +138,6 @@
             }
         }
         const calculator = new Calculator(total);
-        // console.log(calculator.result)
         numberButtons.forEach(button =>{
             button.addEventListener('click',()=>{
                 calculator.appendNum(button.value);
