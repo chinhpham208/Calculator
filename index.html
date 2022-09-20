@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container d-flex">
         <div class="cal-body">
-            <form action="" name="calculator">
-                <div class="cal-sreen row">
+            <form action="" name="calculator" id="calculator" class="d-flex flex-column justify-content-between">
+                <div class="cal-sreen row m-0">
                     <div class="col-md-12 p-0">
-                        <div class="form-group">
-                            <input type="text" class="form-control" rows="4" id="total" type="text" name="answer">
+                        <div class="form-group mb-0">
+                            <input class="form-control result-panel p-1 text-right border-0" rows="4" id="total" type="text" name="answer" value="0" maxlength="16" readonly>
                         </div>
                     </div>
                 </div>
                 <div class="cal-button-row">
                     <!-- 1 -->
-                    <div class="row">
+                    <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out">%</button>
                         </div>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <!-- 2 -->
-                    <div class="row">
+                    <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out" disabled>1/x</button>
                         </div>
@@ -50,64 +50,64 @@
                             <button type="button" class="btn btn-out" disabled>2x</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" id="button-divide" class="btn btn-out">&divide;</button>
+                            <button type="button" class="btn btn-out">&divide;</button>
                         </div>
                     </div>
                     <!-- 3 -->
-                    <div class="row">
+                    <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
-                            <button type="button" value="7" onclick="getVal(value)" class="btn btn-number">7</button>
+                            <button type="button" class="btn btn-num" value="7">7</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="8" onclick="getVal(value)" class="btn btn-number">8</button>
+                            <button type="button" class="btn btn-num" value="8">8</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="9" onclick="getVal(value)" class="btn btn-number">9</button>
+                            <button type="button" class="btn btn-num" value="9">9</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" id="button-multiply" class="btn btn-out">x</button>
+                            <button type="button" class="btn btn-out">x</button>
                         </div>
                     </div>
                     <!-- 4 -->
-                    <div class="row">
+                    <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
-                            <button type="button" value="4" onclick="getVal(value)" class="btn btn-number">4</button>
+                            <button type="button" class="btn btn-num" value="4">4</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="5" onclick="getVal(value)" class="btn btn-number">5</button>
+                            <button type="button" class="btn btn-num" value="5">5</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="6" onclick="getVal(value)" class="btn btn-number">6</button>
+                            <button type="button" class="btn btn-num" value="6">6</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" id="button-substract" class="btn btn-out" >-</button>
+                            <button type="button" class="btn btn-out" >-</button>
                         </div>
                     </div>
                     <!-- 5 -->
-                    <div class="row">
+                    <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
-                            <button type="button" value="1" onclick="getVal(value)" class="btn btn-number">1</button>
+                            <button type="button" class="btn btn-num" value="1">1</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="2" onclick="getVal(value)" class="btn btn-number">2</button>
+                            <button type="button" class="btn btn-num" value="2" >2</button>
                         </div>
                         <div class="col-xs-3 g-2">
-                            <button type="button" value="3" onclick="getVal(value)" class="btn btn-number">3</button>
+                            <button type="button" class="btn btn-num" value="3">3</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" id="button-add" class="btn btn-out">+</button>
+                            <button type="button" class="btn btn-out">+</button>
                         </div>
                     </div>
                     <!-- 6 -->
-                    <div class="row">
+                    <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
                             <button type="button" class="btn">+/-</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="0" onclick="getVal(value)" class="btn btn-number">0</button>
+                            <button type="button" class="btn btn-num" value="0">0</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" value="." onclick="getVal(value)" class="btn btn-number">.</butto>
+                            <button type="button" class="btn btn-num" value=".">.</button>
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-out btn-equal">=</button>
@@ -119,32 +119,30 @@
     </div>
     <script type="text/javascript">
         const total = document.querySelector('#total');
-       
-       
-        function getVal(val){
-            let string= total.value + val;
-            let array = (string).split(',');
-            total.value = totalFormat(array);
-        }
+        const numberButtons = document.querySelectorAll('.btn-num');
 
-        function totalFormat(array){
-            const stringTotal = array.join('');
-            const interger = parseFloat(stringTotal.split('.')[0]);
-            const decimal = stringTotal.split('.')[1];
-            let intergerDisplay;
-            if(isNaN(interger)){
-                intergerDisplay='';
-            }else{
-                intergerDisplay = interger.toLocaleString('en',{maximumFractionDigits: 0})
+        function Calculator(result){
+            this.result = result;
+            this.currentResult = '';
+            
+            this.appendNum = function(num){
+                if(this.currentResult.length === 16) return;
+                this.currentResult += num;
+                
             }
-
-            if(decimal != null){
-                return `${intergerDisplay}.${decimal}`;
+            this.displayNum = function(){
+                this.result.value = this.currentResult;
             }
-            else{
-                return intergerDisplay;
-            }
+            
         }
+        const calculator = new Calculator(total);
+        numberButtons.forEach(button =>{
+            button.addEventListener('click',()=>{
+                calculator.appendNum(button.value);
+                calculator.displayNum();
+            })
+        })
+        
     </script>
 </body>
 </html>
