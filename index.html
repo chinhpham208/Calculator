@@ -118,8 +118,6 @@
         </div>
     </div>
     <script type="text/javascript">
-        // const total = document.querySelector('#total');
-        // const numberButtons = document.querySelectorAll('.btn-num');
         function Calculator(settings){
             this.result = document.querySelector(settings.resultPanelSelector);
             this.currentResult = '';
@@ -131,10 +129,18 @@
                 if(number){
                     self.appendNum(e.target.value);
                 }
-                else return;
+                else{
+                    switch(e.target.value){
+                    case 'clear':
+                        self.clearAllResult();
+                        break;
+                    default:
+                        return;
+                    }
+                }   
+                
 
             }
-
             this.appendNum = function(num){
                 // The length of number only = 16
                 if(this.currentResult.length === 16) return;
@@ -147,6 +153,7 @@
             this.displayNum = function(){
                 this.result.value = this.formatNum(this.currentResult);
             }
+
             // method format the interger part
             this.formatNum = function(stringNum){
                 const intergerDigit = parseFloat(stringNum.split('.')[0]);
@@ -164,11 +171,17 @@
                 else{ return numFormatted;}
             }
 
+            this.clearAllResult = function(){
+                this.currentResult='0';
+                this.displayNum();
+            }
+
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
                 element.addEventListener('click',self.onButtonClick);
             })
                 
         }
+
         const calculator = new Calculator({
             resultPanelSelector: '#total',
             btnSelector:'.btn',
