@@ -118,31 +118,41 @@
         </div>
     </div>
     <script type="text/javascript">
-        const total = document.querySelector('#total');
-        const numberButtons = document.querySelectorAll('.btn-num');
-
-        function Calculator(result){
-            this.result = result;
+        // const total = document.querySelector('#total');
+        // const numberButtons = document.querySelectorAll('.btn-num');
+        function Calculator(settings){
+            this.result = document.querySelector(settings.resultPanelSelector);
             this.currentResult = '';
+            var self = this;
             
+           
+            
+            this.onButtonClick = function(e){
+                self.appendNum(e.target.value);
+            }
             this.appendNum = function(num){
                 if(this.currentResult.length === 16) return;
                 this.currentResult += num;
-                
+                this.displayNum();
             }
             this.displayNum = function(){
                 this.result.value = this.currentResult;
             }
-            
-        }
-        const calculator = new Calculator(total);
-        numberButtons.forEach(button =>{
-            button.addEventListener('click',()=>{
-                calculator.appendNum(button.value);
-                calculator.displayNum();
+            document.querySelectorAll(settings.btnSelector).forEach(function(element){
+                element.addEventListener('click',self.onButtonClick);
+                console.log(element)
             })
-        })
-        
+                
+        }
+        const calculator = new Calculator({
+            resultPanelSelector: '#total',
+            btnSelector:'.btn-num'
+        });
+        // numberButtons.forEach(button =>{
+        //     button.addEventListener('click',()=>{
+        //         this.appendNum(button.value);
+        //         })
+        //     })
     </script>
 </body>
 </html>
