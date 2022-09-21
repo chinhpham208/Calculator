@@ -141,6 +141,9 @@
                     case 'add':
                         self.addOperation();
                         break;
+                    case 'substract':
+                        self.substractOperation();
+                        break;
                     default:
                         return;
                     }
@@ -165,7 +168,6 @@
                 else{
                     this.preTotal.innerText = '';
                 }
-                console.log(this.previousResult,this.currentResult)
             }
 
             // method format the interger part
@@ -204,6 +206,21 @@
                 this.previousResult = this.formatNum(previousNum.toString());
                 this.currentResult = '0';
                 this.operation = '+';
+                this.displayNum();
+            }
+
+            this.substractOperation = function(){
+                var previousNum = parseFloat(this.previousResult);
+                var currentNum =  parseFloat(this.currentResult);
+                if(isNaN(currentNum)) return;
+                if(isNaN(previousNum)){
+                    previousNum = currentNum;
+                }else{
+                    previousNum = previousNum - currentNum;
+                }
+                this.previousResult = this.formatNum(previousNum.toString());
+                this.currentResult = '0';
+                this.operation = '-';
                 this.displayNum();
             }
 
