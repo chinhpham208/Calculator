@@ -17,8 +17,7 @@
             <form action="" name="calculator" id="calculator" class="d-flex flex-column justify-content-between">
                 <div class="cal-sreen row m-0">
                     <div class="col-md-12 p-0">
-                        <div class="form-group mb-0 d-flex flex-column h-100">
-                            <div class="previous-total">123412321  +</div>
+                        <div class="form-group mb-0">
                             <input class="form-control result-panel p-1 text-right border-0" rows="4" id="total" type="text" name="answer" value="0" maxlength="16" readonly>
                         </div>
                     </div>
@@ -27,16 +26,16 @@
                     <!-- 1 -->
                     <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">%</button>
+                            <button type="button" class="btn btn-out" value="percent">%</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">CE</button>
+                            <button type="button" class="btn btn-out" value="clearpanel">CE</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" id="clear-all" class="btn btn-out">C</button>
+                            <button type="button" class="btn btn-out" value="clear">C</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out"><i class="bi bi-backspace"></i></button>
+                            <button type="button" class="btn btn-out" value="removelast"><i class="bi bi-backspace"></i></button>
                         </div>
                     </div>
                     <!-- 2 -->
@@ -51,7 +50,7 @@
                             <button type="button" class="btn btn-out" disabled>2x</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">&divide;</button>
+                            <button type="button" class="btn btn-out" value="divide">&divide;</button>
                         </div>
                     </div>
                     <!-- 3 -->
@@ -66,7 +65,7 @@
                             <button type="button" class="btn btn-num" value="9">9</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">x</button>
+                            <button type="button" class="btn btn-out" value="multiply">x</button>
                         </div>
                     </div>
                     <!-- 4 -->
@@ -81,7 +80,7 @@
                             <button type="button" class="btn btn-num" value="6">6</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out" >-</button>
+                            <button type="button" class="btn btn-out" value="substract">-</button>
                         </div>
                     </div>
                     <!-- 5 -->
@@ -96,13 +95,13 @@
                             <button type="button" class="btn btn-num" value="3">3</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out">+</button>
+                            <button type="button" class="btn btn-out" value="add">+</button>
                         </div>
                     </div>
                     <!-- 6 -->
                     <div class="row justify-content-center m-0">
                         <div class="col-xs-3">
-                            <button type="button" class="btn">+/-</button>
+                            <button type="button" class="btn" disabled>+/-</button>
                         </div>
                         <div class="col-xs-3">
                             <button type="button" class="btn btn-num" value="0">0</button>
@@ -111,7 +110,7 @@
                             <button type="button" class="btn btn-num" value=".">.</button>
                         </div>
                         <div class="col-xs-3">
-                            <button type="button" class="btn btn-out btn-equal">=</button>
+                            <button type="button" class="btn btn-out btn-equal" value="equal">=</button>
                         </div>
                     </div>
                 </div>
@@ -125,8 +124,13 @@
             var self = this;
 
             this.onButtonClick = function(e){
-                self.appendNum(e.target.value);
-                console.log(self);
+                var arrNum=['.','0','1','2','3','4','5','6','7','8','9'];
+                var number = arrNum.includes(e.target.value);
+                if(number){
+                    self.appendNum(e.target.value);
+                }
+                else return;
+
             }
 
             this.appendNum = function(num){
@@ -137,14 +141,13 @@
                 this.currentResult += num;
                 this.displayNum();
             }
-
+            
             this.displayNum = function(){
                 this.result.value = this.formatNum(this.currentResult);
             }
 
             // method format the interger part
             this.formatNum = function(stringNum){
-                if(stringNum=='') return '';
                 const intergerDigit = parseFloat(stringNum.split('.')[0]);
                 const decimalDigit = stringNum.split('.')[1];
                 let numFormatted;
@@ -154,7 +157,6 @@
                 else{
                     numFormatted = intergerDigit.toLocaleString('en',{maximumFractionDigits: 0});
                 }
-
                 if(decimalDigit!= null){
                     return `${numFormatted}.${decimalDigit}`;
                 }
@@ -169,7 +171,7 @@
 
         const calculator = new Calculator({
             resultPanelSelector: '#total',
-            btnSelector:'.btn-num',
+            btnSelector:'.btn',
         });
     </script>
 </body>
