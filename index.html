@@ -18,7 +18,7 @@
                 <div class="cal-sreen row m-0">
                     <div class="col-md-12 p-0">
                         <div class="form-group mb-0 d-flex flex-column h-100">
-                            <div class="previous-total">100999998  +</div>
+                            <div class="previous-total"></div>
                             <input class="form-control result-panel p-1 text-right border-0" rows="4" id="total" type="text" name="answer" value="0" maxlength="16" readonly>
                         </div>
                     </div>
@@ -121,7 +121,10 @@
     <script type="text/javascript">
         function Calculator(settings){
             this.result = document.querySelector(settings.resultPanelSelector);
+            this.preTotal = document.querySelector(settings.preTotal);
             this.currentResult = '';
+            this.previousResult='';
+            this.operation =undefined;
             var self = this;
 
             this.onButtonClick = function(e){
@@ -134,6 +137,9 @@
                     switch(e.target.value){
                     case 'clear':
                         self.clearAllResult();
+                        break;
+                    case 'add':
+                        self.addOperation();
                         break;
                     default:
                         return;
@@ -153,6 +159,7 @@
             
             this.displayNum = function(){
                 this.result.value = this.formatNum(this.currentResult);
+               
             }
 
             // method format the interger part
@@ -177,6 +184,21 @@
                 this.displayNum();
             }
 
+            this.addOperation = function(){
+                var previousNum = parseFloat(this.previousResult);
+                var currentNum =  parseFloat(this.currentResult);
+                if(isNaN(currentNum)) return;
+                if(isNaN(previousNum)){
+                    previousNum = currentNum;
+                }else{
+                    previousNum = previousNum + currentNum
+                }
+                this.previousResult = this.formatNum(previousNum.toString());
+                this.currentResult = '0';
+                this.operation = '+';
+                this.displayNum();
+            }
+
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
                 element.addEventListener('click',self.onButtonClick);
             })
@@ -185,6 +207,7 @@
 
         const calculator = new Calculator({
             resultPanelSelector: '#total',
+            preTotal:'.previous-total',
             btnSelector:'.btn',
         });
     </script>
