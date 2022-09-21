@@ -119,13 +119,16 @@
         </div>
     </div>
     <script type="text/javascript">
-        const total = document.querySelector('#total');
-        const numberButtons = document.querySelectorAll('.btn-num');
-        const allClearButton = document.querySelector('#clear-all');
+        function Calculator(settings){
+            this.result = document.querySelector(settings.resultPanelSelector);
+            this.currentResult = '';
+            var self = this;
 
-        function Calculator(result){
-            this.result = result;
-            this.currentResult='';
+            this.onButtonClick = function(e){
+                self.appendNum(e.target.value);
+                console.log(self);
+            }
+
             this.appendNum = function(num){
                 // The length of number only = 16
                 if(this.currentResult.length === 16) return;
@@ -133,11 +136,12 @@
                 if(num ==='.' && this.currentResult.includes('.')) return;
                 this.currentResult += num;
                 this.displayNum();
-                
             }
+
             this.displayNum = function(){
                 this.result.value = this.formatNum(this.currentResult);
             }
+
             // method format the interger part
             this.formatNum = function(stringNum){
                 if(stringNum=='') return '';
@@ -157,24 +161,16 @@
                 else{ return numFormatted;}
             }
 
-            this.clearAllResult = function (){
-                this.currentResult='';
-            }
-            
-        }
-        const calculator = new Calculator(total);
-        numberButtons.forEach(button =>{
-            button.addEventListener('click',()=>{
-                calculator.appendNum(button.value);
-                calculator.displayNum();
+            document.querySelectorAll(settings.btnSelector).forEach(function(element){
+                element.addEventListener('click',self.onButtonClick);
             })
-        })
+                
+        }
 
-        allClearButton.addEventListener('click',()=>{
-            calculator.clearAllResult();
-            calculator.displayNum();
-        })
-        
+        const calculator = new Calculator({
+            resultPanelSelector: '#total',
+            btnSelector:'.btn-num',
+        });
     </script>
 </body>
 </html>
