@@ -212,18 +212,29 @@
             }
 
             this.substractOperation = function(){
-                var previousNum = parseFloat(this.previousResult);
-                var currentNum =  parseFloat(this.currentResult);
-                if(isNaN(currentNum)) return;
-                if(isNaN(previousNum)){
-                    previousNum = currentNum;
+                if(this.currentResult==='')return;
+                var sub;
+                var previousNum = parseFloat(this.previousResult.split(',').join(''));
+                var currentNum =  parseFloat(this.currentResult.split(',').join(''));
+                if(this.previousResult===''){
+                    sub = currentNum;
                 }else{
-                    previousNum = previousNum - currentNum;
+                    sub = previousNum - currentNum;
                 }
-                this.previousResult = this.formatNum(previousNum.toString());
-                this.currentResult = '0';
+                this.previousResult = this.formatNum(sub.toString());
+                this.currentResult = '';
                 this.operation = '-';
                 this.displayNum();
+                // if(isNaN(currentNum)) return;
+                // if(isNaN(previousNum)){
+                //     previousNum = currentNum;
+                // }else{
+                //     previousNum = previousNum - currentNum;
+                // }
+                // this.previousResult = this.formatNum(previousNum.toString());
+                // this.currentResult = '0';
+                // this.operation = '-';
+                // this.displayNum();
             }
 
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
