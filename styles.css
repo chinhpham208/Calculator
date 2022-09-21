@@ -32,9 +32,7 @@
     font-size: var(--fontSizeResult);
     font-weight: 500;
 }
-cal-screen{
-    position: absolute;
-}
+
 
 .btn{
     font-size: 1.5rem;
