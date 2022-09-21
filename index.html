@@ -152,7 +152,12 @@
                 const intergerDigit = parseFloat(stringNum.split('.')[0]);
                 const decimalDigit = stringNum.split('.')[1];
                 let numFormatted;
-                numFormatted = intergerDigit.toLocaleString('en',{maximumFractionDigits: 0});
+                if(isNaN(intergerDigit)){
+                    numFormatted = '';
+                }
+                else{
+                    numFormatted = intergerDigit.toLocaleString('en',{maximumFractionDigits: 0});
+                }
                 if(decimalDigit!= null){
                     return `${numFormatted}.${decimalDigit}`;
                 }
