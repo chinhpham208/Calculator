@@ -129,6 +129,7 @@
             
             this.onButtonClick = function(e){
                 self.appendNum(e.target.value);
+                console.log(self);
             }
             this.appendNum = function(num){
                 // The length of number only = 16
@@ -154,7 +155,6 @@
             }
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
                 element.addEventListener('click',self.onButtonClick);
-                console.log(element)
             })
                 
         }
@@ -162,11 +162,6 @@
             resultPanelSelector: '#total',
             btnSelector:'.btn-num'
         });
-        // numberButtons.forEach(button =>{
-        //     button.addEventListener('click',()=>{
-        //         this.appendNum(button.value);
-        //         })
-        //     })
     </script>
 </body>
 </html>
