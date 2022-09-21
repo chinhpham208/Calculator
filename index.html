@@ -136,13 +136,32 @@
             }
 
             this.appendNum = function(num){
+                // The length of number only = 16
                 if(this.currentResult.length === 16) return;
+                // Only 1 '.' is allowed on the number
+                if(num ==='.' && this.currentResult.includes('.')) return;
                 this.currentResult += num;
                 this.displayNum();
             }
             
             this.displayNum = function(){
-                this.result.value = this.currentResult;
+                this.result.value = this.formatNum(this.currentResult);
+            }
+            // method format the interger part
+            this.formatNum = function(stringNum){
+                const intergerDigit = parseFloat(stringNum.split('.')[0]);
+                const decimalDigit = stringNum.split('.')[1];
+                let numFormatted;
+                if(isNaN(intergerDigit)){
+                    numFormatted = '';
+                }
+                else{
+                    numFormatted = intergerDigit.toLocaleString('en',{maximumFractionDigits: 0});
+                }
+                if(decimalDigit!= null){
+                    return `${numFormatted}.${decimalDigit}`;
+                }
+                else{ return numFormatted;}
             }
 
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
@@ -154,11 +173,6 @@
             resultPanelSelector: '#total',
             btnSelector:'.btn',
         });
-        // numberButtons.forEach(button =>{
-        //     button.addEventListener('click',()=>{
-        //         this.appendNum(button.value);
-        //         })
-        //     })
     </script>
 </body>
 </html>
