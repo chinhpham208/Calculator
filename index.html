@@ -165,7 +165,6 @@
                 else{
                     this.preTotal.innerText = '';
                 }
-                console.log(this.previousResult,this.currentResult)
             }
 
             // method format the interger part
@@ -193,13 +192,14 @@
             }
 
             this.addOperation = function(){
-                var previousNum = parseFloat(this.previousResult);
-                var currentNum =  parseFloat(this.currentResult);
+                var previousNum = parseFloat(this.previousResult.split(',').join(''));
+                var currentNum =  parseFloat(this.currentResult.split(',').join(''));
                 if(isNaN(currentNum)) return;
                 if(isNaN(previousNum)){
                     previousNum = currentNum;
-                }else{
-                    previousNum = previousNum + currentNum
+                }
+                else{
+                    previousNum = previousNum + currentNum;
                 }
                 this.previousResult = this.formatNum(previousNum.toString());
                 this.currentResult = '0';
