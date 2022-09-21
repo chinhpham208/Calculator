@@ -129,10 +129,18 @@
                 if(number){
                     self.appendNum(e.target.value);
                 }
-                else return;
+                else{
+                    switch(e.target.value){
+                    case 'clear':
+                        self.clearAllResult();
+                        break;
+                    default:
+                        return;
+                    }
+                }   
+                
 
             }
-
             this.appendNum = function(num){
                 // The length of number only = 16
                 if(this.currentResult.length === 16) return;
@@ -161,6 +169,11 @@
                     return `${numFormatted}.${decimalDigit}`;
                 }
                 else{ return numFormatted;}
+            }
+
+            this.clearAllResult = function(){
+                this.currentResult='0';
+                this.displayNum();
             }
 
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
