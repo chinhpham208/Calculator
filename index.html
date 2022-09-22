@@ -193,17 +193,15 @@
 
             this.addOperation = function(){
                 if(this.currentResult==='')return;
-                var sum;
                 var previousNum = parseFloat(this.previousResult.split(',').join(''));
                 var currentNum =  parseFloat(this.currentResult.split(',').join(''));
-                  // if(isNaN(previousNum) || isNaN(currentNum)) return;
                 if(this.previousResult===''){
-                    sum = currentNum;
+                    previousNum= currentNum;
                 }else{
-                    sum = previousNum + currentNum;
+                     previousNum += currentNum;
                 }
-                this.previousResult = this.formatNum(sum.toString());
-                this.currentResult = '';
+                this.previousResult = this.formatNum(previousNum.toString());
+                this.currentResult = '0';
                 this.operation = '+';
                 this.displayNum();
             }
