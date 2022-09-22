@@ -125,6 +125,7 @@
             this.currentResult = '';
             this.previousResult='';
             this.operation =undefined;
+            this.arraytemp=[];
             var self = this;
 
             this.onButtonClick = function(e){
@@ -161,9 +162,15 @@
             }
             
             this.displayNum = function(){
-                this.result.value = this.formatNum(this.currentResult);
+                if(this.currentResult===''){
+                    this.result.value = '0';
+                }
+                else{
+                    this.result.value = this.formatNum(this.currentResult);
+                }
+                
                 if(this.operation != null){
-                    this.preTotal.innerText = `${this.previousResult}  ${this.operation}`;
+                    this.preTotal.innerText = `${this.formatNum(this.previousResult)}  ${this.operation}`;
                 }
                 else{
                     this.preTotal.innerText = '';
@@ -188,41 +195,44 @@
             }
 
             this.clearAllResult = function(){
-                this.currentResult='0';
+                this.currentResult='';
                 this.previousResult='';
                 this.operation='';
+                this.arraytemp=[];
                 this.displayNum();
+
             }
-            this.calculate = function(operation){
-                if(this.currentResult==='')return;
-                var previousNum = parseFloat(this.previousResult.split(',').join(''));
-                var currentNum =  parseFloat(this.currentResult.split(',').join(''));
-                if(this.previousResult===''){
-                    previousNum= currentNum;
-                }else{
-                     switch(operation){
-                        case '+': previousNum += currentNum;break;
-                        case '-': previousNum-=currentNum;break;
-                        default: return;
-                     }
-                }
-                this.previousResult = this.formatNum(previousNum.toString());
-                this.currentResult = '0';
-            }
+            
             this.addOperation = function(){
-                if(this.currentResult==0)return;
+                if(this.currentResult==='')return;
                 this.operation = '+';
-                this.calculate(this.operation);
+                this.calculator(this.operation);
                 this.displayNum();
             }
 
             this.substractOperation = function(){
-                if(this.currentResult==0)return;
+                if(this.currentResult==='')return;
                 this.operation = '-';
-                this.calculate(this.operation);
+                this.calculator(this.operation);
                 this.displayNum();
             }
 
+            this.calculator = function(operation){
+                if(this.arraytemp===[]) return;
+                if(this.currentResult==='')return;
+                if(this.previousResult===''){
+                    this.previousResult = this.currentResult;
+                    this.arraytemp.push(this.previousResult,this.operation);
+                }
+                else{
+                    this.arraytemp.push(this.currentResult);
+                    console.log(this.arraytemp)
+                    this.previousResult = eval(this.arraytemp.join('')).toString();
+                    this.arraytemp.splice(0,3,this.previousResult,this.operation);
+                    
+                }
+                this.currentResult='';
+            }
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
                 element.addEventListener('click',self.onButtonClick);
             })
