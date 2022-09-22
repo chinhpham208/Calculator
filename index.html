@@ -211,28 +211,17 @@
 
             this.substractOperation = function(){
                 if(this.currentResult==='')return;
-                var sub;
                 var previousNum = parseFloat(this.previousResult.split(',').join(''));
                 var currentNum =  parseFloat(this.currentResult.split(',').join(''));
                 if(this.previousResult===''){
-                    sub = currentNum;
+                    previousNum= currentNum;
                 }else{
-                    sub = previousNum - currentNum;
+                     previousNum -= currentNum;
                 }
-                this.previousResult = this.formatNum(sub.toString());
-                this.currentResult = '';
+                this.previousResult = this.formatNum(previousNum.toString());
+                this.currentResult = '0';
                 this.operation = '-';
                 this.displayNum();
-                // if(isNaN(currentNum)) return;
-                // if(isNaN(previousNum)){
-                //     previousNum = currentNum;
-                // }else{
-                //     previousNum = previousNum - currentNum;
-                // }
-                // this.previousResult = this.formatNum(previousNum.toString());
-                // this.currentResult = '0';
-                // this.operation = '-';
-                // this.displayNum();
             }
 
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
