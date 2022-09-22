@@ -66,11 +66,7 @@
                             <button type="button" class="btn btn-num" value="9">9</button>
                         </div>
                         <div class="col-xs-3">
-<<<<<<< HEAD
-                            <button type="button" onclick="multiply()" id="button-multiply" class="btn btn-out">x</button>
-=======
                             <button type="button" class="btn btn-out" value="multiply">x</button>
->>>>>>> 49bd64e2159b343289e015e5cc33976f0fc05c9b
                         </div>
                     </div>
                     <!-- 4 -->
@@ -85,11 +81,8 @@
                             <button type="button" class="btn btn-num" value="6">6</button>
                         </div>
                         <div class="col-xs-3">
-<<<<<<< HEAD
-                            <button type="button" onclick="substract()" id="button-substract" class="btn btn-out" >-</button>
-=======
+
                             <button type="button" class="btn btn-out" value="substract">-</button>
->>>>>>> 49bd64e2159b343289e015e5cc33976f0fc05c9b
                         </div>
                     </div>
                     <!-- 5 -->
@@ -104,11 +97,7 @@
                             <button type="button" class="btn btn-num" value="3">3</button>
                         </div>
                         <div class="col-xs-3">
-<<<<<<< HEAD
-                            <button type="button" onclick="add()" id="button-add" class="btn btn-out">+</button>
-=======
                             <button type="button" class="btn btn-out" value="add">+</button>
->>>>>>> 49bd64e2159b343289e015e5cc33976f0fc05c9b
                         </div>
                     </div>
                     <!-- 6 -->
@@ -156,6 +145,9 @@
                         break;
                     case 'substract':
                         self.substractOperation();
+                        break;
+                    case 'multiply':
+                        self.multiplyOperation();
                         break;
                     default:
                         return;
@@ -229,6 +221,13 @@
                 this.displayNum();
             }
 
+            this.multiplyOperation = function(){
+                if(this.currentResult==='')return;
+                this.operation = '*';
+                this.calculator(this.operation);
+                this.displayNum();
+            }
+
             this.calculator = function(operation){
                 if(this.arraytemp===[]) return;
                 if(this.currentResult==='')return;
@@ -238,7 +237,6 @@
                 }
                 else{
                     this.arraytemp.push(this.currentResult);
-                    console.log(this.arraytemp)
                     this.previousResult = eval(this.arraytemp.join('')).toString();
                     this.arraytemp.splice(0,3,this.previousResult,this.operation);
                     
@@ -248,46 +246,12 @@
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
                 element.addEventListener('click',self.onButtonClick);
             })
-                
         }
-
-<<<<<<< HEAD
-        function substract(){
-            let substract = topOperation.innerText.split(' ')[0];
-            if(total.value === '') return;
-            if(topOperation.innerText !== ''){
-                substract = convertToNum(substract) - convertToNum(total.value);
-                total.value = '';
-                topOperation.innerText = `${totalFormat(substract.toString())}  -`;
-            }
-            else{
-                topOperation.innerText = `${total.value}  -`;
-                total.value='';
-            }
-        }
-
-        function multiply(){
-            let multiply = topOperation.innerText.split(' ')[0];
-            if(total.value === '') return;
-            if(topOperation.innerText !== ''){
-                multiply = convertToNum(multiply) * convertToNum(total.value);
-                total.value = '';
-                topOperation.innerText = `${totalFormat(multiply.toString())}  x`;
-            }
-            else{
-                topOperation.innerText = `${total.value}  x`;
-                total.value='';
-            }
-        }
-        
-        
-=======
         const calculator = new Calculator({
             resultPanelSelector: '#total',
             preTotal:'.previous-total',
             btnSelector:'.btn',
         });
->>>>>>> 49bd64e2159b343289e015e5cc33976f0fc05c9b
     </script>
 </body>
 </html>
