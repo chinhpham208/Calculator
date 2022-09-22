@@ -193,34 +193,33 @@
                 this.operation='';
                 this.displayNum();
             }
-
-            this.addOperation = function(){
+            this.calculate = function(operation){
                 if(this.currentResult==='')return;
                 var previousNum = parseFloat(this.previousResult.split(',').join(''));
                 var currentNum =  parseFloat(this.currentResult.split(',').join(''));
                 if(this.previousResult===''){
                     previousNum= currentNum;
                 }else{
-                     previousNum += currentNum;
+                     switch(operation){
+                        case '+': previousNum += currentNum;break;
+                        case '-': previousNum-=currentNum;break;
+                        default: return;
+                     }
                 }
                 this.previousResult = this.formatNum(previousNum.toString());
                 this.currentResult = '0';
+            }
+            this.addOperation = function(){
+                if(this.currentResult==0)return;
                 this.operation = '+';
+                this.calculate(this.operation);
                 this.displayNum();
             }
 
             this.substractOperation = function(){
-                if(this.currentResult==='')return;
-                var previousNum = parseFloat(this.previousResult.split(',').join(''));
-                var currentNum =  parseFloat(this.currentResult.split(',').join(''));
-                if(this.previousResult===''){
-                    previousNum= currentNum;
-                }else{
-                     previousNum -= currentNum;
-                }
-                this.previousResult = this.formatNum(previousNum.toString());
-                this.currentResult = '0';
+                if(this.currentResult==0)return;
                 this.operation = '-';
+                this.calculate(this.operation);
                 this.displayNum();
             }
 
