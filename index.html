@@ -81,6 +81,7 @@
                             <button type="button" class="btn btn-num" value="6">6</button>
                         </div>
                         <div class="col-xs-3">
+
                             <button type="button" class="btn btn-out" value="substract">-</button>
                         </div>
                     </div>
@@ -144,6 +145,9 @@
                         break;
                     case 'substract':
                         self.substractOperation();
+                        break;
+                    case 'multiply':
+                        self.multiplyOperation();
                         break;
                     default:
                         return;
@@ -217,6 +221,13 @@
                 this.displayNum();
             }
 
+            this.multiplyOperation = function(){
+                if(this.currentResult==='')return;
+                this.operation = '*';
+                this.calculator(this.operation);
+                this.displayNum();
+            }
+
             this.calculator = function(operation){
                 if(this.arraytemp===[]) return;
                 if(this.currentResult==='')return;
@@ -226,7 +237,6 @@
                 }
                 else{
                     this.arraytemp.push(this.currentResult);
-                    console.log(this.arraytemp)
                     this.previousResult = eval(this.arraytemp.join('')).toString();
                     this.arraytemp.splice(0,3,this.previousResult,this.operation);
                     
@@ -236,9 +246,7 @@
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
                 element.addEventListener('click',self.onButtonClick);
             })
-                
         }
-
         const calculator = new Calculator({
             resultPanelSelector: '#total',
             preTotal:'.previous-total',
