@@ -230,7 +230,7 @@
                 this.displayNum();
             }
             this.divideOpertion = function(){
-                if(this.currentResult==='')return;
+                if(this.currentResult==='' && this.previousResult=='')return;
                 this.operation = '/';
                 this.calculator(this.operation);
                 this.displayNum();
