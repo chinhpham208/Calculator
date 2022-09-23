@@ -81,6 +81,7 @@
                             <button type="button" class="btn btn-num" value="6">6</button>
                         </div>
                         <div class="col-xs-3">
+
                             <button type="button" class="btn btn-out" value="substract">-</button>
                         </div>
                     </div>
@@ -148,9 +149,6 @@
                     case 'multiply':
                         self.multiplyOperation();
                         break;
-                    case 'divide':
-                        self.divideOpertion();
-                        break;
                     default:
                         return;
                     }
@@ -210,6 +208,7 @@
             }
             
             this.addOperation = function(){
+                if(this.currentResult==='')return;
                 this.operation = '+';
                 this.calculator(this.operation);
                 this.displayNum();
@@ -225,12 +224,6 @@
             this.multiplyOperation = function(){
                 if(this.currentResult==='')return;
                 this.operation = '*';
-                this.calculator(this.operation);
-                this.displayNum();
-            }
-            this.divideOpertion = function(){
-                if(this.currentResult==='')return;
-                this.operation = '/';
                 this.calculator(this.operation);
                 this.displayNum();
             }
