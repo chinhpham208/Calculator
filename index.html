@@ -149,6 +149,9 @@
                     case 'multiply':
                         self.multiplyOperation();
                         break;
+                    case 'divide':
+                        self.divideOpertion();
+                        break;
                     default:
                         return;
                     }
@@ -224,6 +227,12 @@
             this.multiplyOperation = function(){
                 if(this.currentResult==='' && this.previousResult=='')return;
                 this.operation = '*';
+                this.calculator(this.operation);
+                this.displayNum();
+            }
+            this.divideOpertion = function(){
+                if(this.currentResult==='')return;
+                this.operation = '/';
                 this.calculator(this.operation);
                 this.displayNum();
             }
