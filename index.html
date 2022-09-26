@@ -19,7 +19,7 @@
                     <div class="col-md-12 p-0">
                         <div class="form-group mb-0 d-flex flex-column h-100">
                             <div class="previous-total"></div>
-                            <input class="form-control result-panel p-1 text-right border-0" rows="4" id="total" type="text" name="answer" value="0" maxlength="16" >
+                            <input class="form-control result-panel p-1 text-right border-0" rows="4" id="total" type="text" name="answer" value="0" maxlength="16" readonly>
                         </div>
                     </div>
                 </div>
@@ -244,21 +244,34 @@
                 }
                 this.displayNum();
             }
-            
+
             this.checkInput = function(string){
             let regexPattern = /^[0-9()+\-*.\/]*$/g;
             return regexPattern.test(string);
             }
-        
-            this.result.addEventListener('input',(temp)=>{
-                temp = this.result.value;
-                if(this.checkInput(temp[temp.length-1]) == false){
-                    this.result.value = temp.substring(0,temp.length-1);
+            document.addEventListener('keydown',(e)=>{
+                if(this.currentResult.length==15 ||this.checkInput(e.key)==false) return;
+                else{
+                    switch(e.key){
+                        case '+':
+                        self.addOperation();
+                        break;
+                        case '-':
+                            self.substractOperation();
+                            break;
+                        case '*':
+                            self.multiplyOperation();
+                            break;
+                        case '/':
+                            self.divideOpertion();
+                            break;
+                        default: 
+                            self.appendNum(e.key);
+                            break;
+                    };
                 }
-                this.currentResult = this.result.value;
-
             })
-
+        
             this.calculator = function(operation){
                 if(this.currentResult==='' && this.previousResult=='')return;
                 this.operation = operation;
