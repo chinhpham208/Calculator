@@ -245,8 +245,18 @@
                 this.displayNum();
             }
             
-            this.result.addEventListener('input',()=>{
-                this.currentResult= this.result.value;
+            this.checkInput = function(string){
+            let regexPattern = /^[0-9()+\-*.\/]*$/g;
+            return regexPattern.test(string);
+            }
+        
+            this.result.addEventListener('input',(temp)=>{
+                temp = this.result.value;
+                if(this.checkInput(temp[temp.length-1]) == false){
+                    this.result.value = temp.substring(0,temp.length-1);
+                }
+                this.currentResult = this.result.value;
+
             })
 
             this.calculator = function(operation){
