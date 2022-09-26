@@ -44,11 +44,6 @@
     font-size: var(--fontSizeResult);
     font-weight: 500;
 }
-.result-panel:read-only{
-    background-color: #eff4f9;
-}
-
-
 
 .btn{
     font-size: 1.5rem;
