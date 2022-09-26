@@ -241,6 +241,10 @@
                 }
                 this.displayNum();
             }
+            
+            this.result.addEventListener('input',()=>{
+                this.currentResult= this.result.value;
+            })
 
             this.calculator = function(operation){
                 if(this.currentResult==='' && this.previousResult=='')return;
