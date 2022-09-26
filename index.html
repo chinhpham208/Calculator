@@ -81,7 +81,6 @@
                             <button type="button" class="btn btn-num" value="6">6</button>
                         </div>
                         <div class="col-xs-3">
-
                             <button type="button" class="btn btn-out" value="substract">-</button>
                         </div>
                     </div>
@@ -149,6 +148,9 @@
                     case 'multiply':
                         self.multiplyOperation();
                         break;
+                    case 'divide':
+                        self.divideOpertion();
+                        break;
                     default:
                         return;
                     }
@@ -208,27 +210,27 @@
             }
             
             this.addOperation = function(){
-                if(this.currentResult==='' && this.previousResult=='')return;
-                this.operation = '+';
-                this.calculator(this.operation);
+                this.calculator('+');
                 this.displayNum();
             }
 
             this.substractOperation = function(){
-                if(this.currentResult==='' && this.previousResult=='')return;
-                this.operation = '-';
-                this.calculator(this.operation);
+                this.calculator('-');
                 this.displayNum();
             }
 
             this.multiplyOperation = function(){
-                if(this.currentResult==='' && this.previousResult=='')return;
-                this.operation = '*';
-                this.calculator(this.operation);
+                this.calculator('*');
+                this.displayNum();
+            }
+            this.divideOpertion = function(){
+                this.calculator('/');
                 this.displayNum();
             }
 
             this.calculator = function(operation){
+                if(this.currentResult==='' && this.previousResult=='')return;
+                this.operation = operation;
                 if(this.arraytemp===[]) return;
                 if(this.currentResult===''){
                     this.arraytemp.splice(1,1,operation);
