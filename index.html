@@ -151,6 +151,8 @@
                     case 'divide':
                         self.divideOpertion();
                         break;
+                    case 'equal':
+                        self.equal();
                     default:
                         return;
                     }
@@ -228,6 +230,18 @@
                 this.displayNum();
             }
 
+            this.equal = function(){
+                if(this.currentResult==='') return;
+                if(this.previousResult !== ''){
+                    this.arraytemp.push(this.currentResult);
+                    this.currentResult = eval(this.arraytemp.join('')).toString();
+                    this.previousResult ='';
+                    this.arraytemp=[];
+                    this.operation = undefined;
+                }
+                this.displayNum();
+            }
+
             this.calculator = function(operation){
                 if(this.currentResult==='' && this.previousResult=='')return;
                 this.operation = operation;
@@ -237,8 +251,8 @@
                 }
                 else{
                     if(this.previousResult===''){
-                    this.previousResult = this.currentResult;
-                    this.arraytemp.push(this.previousResult,operation);
+                        this.previousResult = this.currentResult;
+                        this.arraytemp.push(this.previousResult,operation);
                     }
                     else{
                         this.arraytemp.push(this.currentResult);
