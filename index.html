@@ -157,9 +157,8 @@
                         return;
                     }
                 }   
-                
-
             }
+
             this.appendNum = function(num){
                 // The length of number only = 16
                 if(this.currentResult.length === 16) return;
@@ -208,7 +207,6 @@
                 this.operation='';
                 this.arraytemp=[];
                 this.displayNum();
-
             }
             
             this.addOperation = function(){
@@ -245,29 +243,31 @@
                 this.displayNum();
             }
 
-            this.checkInput = function(string){
-            let regexPattern = /^[0-9()+\-*.\/]*$/g;
-            return regexPattern.test(string);
-            }
-            document.addEventListener('keydown',(e)=>{
-                if(this.currentResult.length==15 ||this.checkInput(e.key)==false) return;
+            // handle keyboard event
+            document.addEventListener('keypress',(e)=>{
+                if(this.currentResult.length==15) return;
+                if(e.keyCode>=48 && e.keyCode<=57 || e.keyCode==46){
+                    self.appendNum(e.key);
+                }
                 else{
-                    switch(e.key){
-                        case '+':
-                        self.addOperation();
-                        break;
-                        case '-':
+                    switch(e.keyCode){
+                        case 43:
+                            self.addOperation();
+                            break;
+                        case 45:
                             self.substractOperation();
                             break;
-                        case '*':
+                        case 42:
                             self.multiplyOperation();
                             break;
-                        case '/':
+                        case 47:
                             self.divideOpertion();
                             break;
-                        default: 
-                            self.appendNum(e.key);
+                        case 13:
+                            self.equal();
                             break;
+                        default: return;
+                            
                     };
                 }
             })
