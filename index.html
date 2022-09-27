@@ -242,34 +242,9 @@
                 }
                 this.displayNum();
             }
-           
-            this.calculator = function(operation){
-                if(this.currentResult==='' && this.previousResult=='')return;
-                this.operation = operation;
-                if(this.arraytemp===[]) return;
-                if(this.currentResult===''){
-                    this.arraytemp.splice(1,1,operation);
-                }
-                else{
-                    if(this.previousResult===''){
-                        this.previousResult = this.currentResult;
-                        this.arraytemp.push(this.previousResult,operation);
-                    }
-                    else{
-                        this.arraytemp.push(this.currentResult);
-                        this.previousResult = eval(this.arraytemp.join('')).toString();
-                        this.arraytemp.splice(0,3,this.previousResult,operation);
-                    }
-                }
-                
-                this.currentResult='';
-            }
-            document.querySelectorAll(settings.btnSelector).forEach(function(element){
-                element.addEventListener('click',self.onButtonClick);
-            })
 
-             // handle keyboard event
-             document.addEventListener('keypress',(e)=>{
+            // handle keyboard event
+            document.addEventListener('keypress',(e)=>{
                 if(this.currentResult.length==15) return;
                 if(e.keyCode>=48 && e.keyCode<=57 || e.keyCode==46){
                     self.appendNum(e.key);
@@ -297,6 +272,30 @@
                 }
             })
         
+            this.calculator = function(operation){
+                if(this.currentResult==='' && this.previousResult=='')return;
+                this.operation = operation;
+                if(this.arraytemp===[]) return;
+                if(this.currentResult===''){
+                    this.arraytemp.splice(1,1,operation);
+                }
+                else{
+                    if(this.previousResult===''){
+                        this.previousResult = this.currentResult;
+                        this.arraytemp.push(this.previousResult,operation);
+                    }
+                    else{
+                        this.arraytemp.push(this.currentResult);
+                        this.previousResult = eval(this.arraytemp.join('')).toString();
+                        this.arraytemp.splice(0,3,this.previousResult,operation);
+                    }
+                }
+                
+                this.currentResult='';
+            }
+            document.querySelectorAll(settings.btnSelector).forEach(function(element){
+                element.addEventListener('click',self.onButtonClick);
+            })
         }
             const calculator = new Calculator({
             resultPanelSelector: '#total',
