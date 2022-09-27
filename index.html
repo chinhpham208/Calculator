@@ -156,10 +156,11 @@
                     default:
                         return;
                     }
-                }   
+                }  
                 
-
+                
             }
+
             this.appendNum = function(num){
                 // The length of number only = 16
                 if(this.currentResult.length === 16) return;
@@ -208,7 +209,7 @@
                 this.operation='';
                 this.arraytemp=[];
                 this.displayNum();
-
+                
             }
             
             this.addOperation = function(){
@@ -244,34 +245,7 @@
                 }
                 this.displayNum();
             }
-
-            this.checkInput = function(string){
-            let regexPattern = /^[0-9()+\-*.\/]*$/g;
-            return regexPattern.test(string);
-            }
-            document.addEventListener('keydown',(e)=>{
-                if(this.currentResult.length==15 ||this.checkInput(e.key)==false) return;
-                else{
-                    switch(e.key){
-                        case '+':
-                        self.addOperation();
-                        break;
-                        case '-':
-                            self.substractOperation();
-                            break;
-                        case '*':
-                            self.multiplyOperation();
-                            break;
-                        case '/':
-                            self.divideOpertion();
-                            break;
-                        default: 
-                            self.appendNum(e.key);
-                            break;
-                    };
-                }
-            })
-        
+           
             this.calculator = function(operation){
                 if(this.currentResult==='' && this.previousResult=='')return;
                 this.operation = operation;
@@ -296,6 +270,36 @@
             document.querySelectorAll(settings.btnSelector).forEach(function(element){
                 element.addEventListener('click',self.onButtonClick);
             })
+
+             // handle keyboard event
+             document.addEventListener('keypress',(e)=>{
+                if(this.currentResult.length==15) return;
+                if(e.keyCode>=48 && e.keyCode<=57 || e.keyCode==46){
+                    self.appendNum(e.key);
+                }
+                else{
+                    switch(e.keyCode){
+                        case 43:
+                            self.addOperation();
+                            break;
+                        case 45:
+                            self.substractOperation();
+                            break;
+                        case 42:
+                            self.multiplyOperation();
+                            break;
+                        case 47:
+                            self.divideOpertion();
+                            break;
+                        case 13:
+                            self.equal();
+                            break;
+                        default: return;
+                            
+                    };
+                }
+            })
+        
         }
             const calculator = new Calculator({
             resultPanelSelector: '#total',
