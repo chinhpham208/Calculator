@@ -153,6 +153,10 @@
                         break;
                     case 'equal':
                         self.equal();
+                        break;
+                    case 'removelast':
+                        self.removeLast();
+                        break;
                     default:
                         return;
                     }
@@ -211,7 +215,12 @@
                 this.displayNum();
                 
             }
-            
+
+            this.removeLast = function(){
+                this.currentResult = this.currentResult.substring(0,this.currentResult.length - 1);
+                this.displayNum();
+            }
+
             this.addOperation = function(){
                 this.calculator('+');
                 this.displayNum();
