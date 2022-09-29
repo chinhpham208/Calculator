@@ -273,7 +273,6 @@
 
              // handle keyboard event
              document.addEventListener('keydown',(e)=>{
-                console.log(e.keyCode)
                 if(this.currentResult.length==15) return;
                 if((e.keyCode>=48 && e.keyCode<=57) || e.keyCode==46 || (e.keyCode>=96 && e.keyCode<=105)){
                     self.appendNum(e.key);
@@ -306,7 +305,7 @@
                     };
                 }
             })
-            
+           
         }
             const calculator = new Calculator({
             resultPanelSelector: '#total',
