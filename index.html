@@ -300,6 +300,13 @@
                 }
             })
         
+            //clear all display
+            document.addEventListener('keydown',(e)=>{
+                if(e.keyCode == 27){
+                    self.clearAllResult();
+                }
+            })
+        
         }
             const calculator = new Calculator({
             resultPanelSelector: '#total',
