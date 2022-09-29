@@ -272,34 +272,40 @@
             })
 
              // handle keyboard event
-             document.addEventListener('keypress',(e)=>{
+             document.addEventListener('keydown',(e)=>{
                 if(this.currentResult.length==15) return;
-                if(e.keyCode>=48 && e.keyCode<=57 || e.keyCode==46){
+                if((e.keyCode>=48 && e.keyCode<=57) || e.keyCode==46 || (e.keyCode>=96 && e.keyCode<=105)){
                     self.appendNum(e.key);
                 }
                 else{
                     switch(e.keyCode){
-                        case 43:
+                        case 107:
+                        case 187:
                             self.addOperation();
                             break;
-                        case 45:
+                        case 109:
+                        case 189:
                             self.substractOperation();
                             break;
-                        case 42:
+                        case 106:
                             self.multiplyOperation();
                             break;
-                        case 47:
+                        case 111:
+                        case 191:
                             self.divideOpertion();
                             break;
                         case 13:
                             self.equal();
+                            break;
+                        case 27:
+                            self.clearAllResult();
                             break;
                         default: return;
                             
                     };
                 }
             })
-        
+           
         }
             const calculator = new Calculator({
             resultPanelSelector: '#total',
