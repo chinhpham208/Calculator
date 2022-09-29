@@ -155,10 +155,10 @@
                         self.equal();
                         break;
                     case 'removelast':
-                        self.removeLast();
+                        self.remove();
                         break;
                     case 'clearpanel':
-                        self.removeCurrent();
+                        self.clear();
                         break;
                     default:
                         return;
@@ -219,12 +219,12 @@
                 
             }
 
-            this.removeLast = function(){
+            this.remove = function(){
                 this.currentResult = this.currentResult.substring(0,this.currentResult.length - 1);
                 this.displayNum();
             }
 
-            this.removeCurrent = function(){
+            this.clear = function(){
                 this.currentResult = '';
                 this.displayNum();
             }
