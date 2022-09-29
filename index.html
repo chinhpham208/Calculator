@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container d-flex">
+        <div class="cal-body">
+            <form action="" name="calculator" id="calculator" class="d-flex flex-column justify-content-between">
+                <div class="cal-sreen row m-0">
+                    <div class="col-md-12 p-0">
+                        <div class="form-group mb-0 d-flex flex-column h-100">
+                            <div class="previous-total"></div>
+                            <input class="form-control result-panel p-1 text-right border-0" rows="4" id="total" type="text" name="answer" value="0" maxlength="16" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="cal-button-row">
+                    <!-- 1 -->
+                    <div class="row justify-content-center m-0">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="percent">%</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="clearpanel">CE</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="clear">C</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="removelast"><i class="bi bi-backspace"></i></button>
+                        </div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="row justify-content-center m-0">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" disabled>1/x</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" disabled>x2</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" disabled>2x</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="divide">&divide;</button>
+                        </div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="row justify-content-center m-0">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="7">7</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="8">8</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="9">9</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="multiply">x</button>
+                        </div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="row justify-content-center m-0">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="4">4</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="5">5</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="6">6</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="substract">-</button>
+                        </div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="row justify-content-center m-0">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="1">1</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="2" >2</button>
+                        </div>
+                        <div class="col-xs-3 g-2">
+                            <button type="button" class="btn btn-num" value="3">3</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out" value="add">+</button>
+                        </div>
+                    </div>
+                    <!-- 6 -->
+                    <div class="row justify-content-center m-0">
+                        <div class="col-xs-3">
+                            <button type="button" class="btn" disabled>+/-</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value="0">0</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-num" value=".">.</button>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-out btn-equal" value="equal">=</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function Calculator(settings){
+            this.result = document.querySelector(settings.resultPanelSelector);
+            this.preTotal = document.querySelector(settings.preTotal);
+            this.currentResult = '';
+            this.previousResult='';
+            this.operation =undefined;
+            this.arraytemp=[];
+            var self = this;
+
+            this.onButtonClick = function(e){
+                var arrNum=['.','0','1','2','3','4','5','6','7','8','9'];
+                var number = arrNum.includes(e.target.value);
+                if(number){
+                    self.appendNum(e.target.value);
+                }
+                else{
+                    switch(e.target.value){
+                    case 'clear':
+                        self.clearAllResult();
+                        break;
+                    case 'add':
+                        self.addOperation();
+                        break;
+                    case 'substract':
+                        self.substractOperation();
+                        break;
+                    case 'multiply':
+                        self.multiplyOperation();
+                        break;
+                    case 'divide':
+                        self.divideOpertion();
+                        break;
+                    case 'equal':
+                        self.equal();
+                        break;
+                    case 'removelast':
+                        self.remove();
+                        break;
+                    case 'clearpanel':
+                        self.clear();
+                        break;
+                    default:
+                        return;
+                    }
+                }  
+                
+                
+            }
+
+            this.appendNum = function(num){
+                // The length of number only = 16
+                if(this.currentResult.length === 16) return;
+                // Only 1 '.' is allowed on the number
+                if(num ==='.' && this.currentResult.includes('.')) return;
+                this.currentResult += num;
+                this.displayNum();
+            }
+            
+            this.displayNum = function(){
+                if(this.currentResult===''){
+                    this.result.value = '0';
+                }
+                else{
+                    this.result.value = this.formatNum(this.currentResult);
+                }
+                
+                if(this.operation != null){
+                    this.preTotal.innerText = `${this.formatNum(this.previousResult)}  ${this.operation}`;
+                }
+                else{
+                    this.preTotal.innerText = '';
+                }
+            }
+
+            // method format the interger part
+            this.formatNum = function(stringNum){
+                const intergerDigit = parseFloat(stringNum.split('.')[0]);
+                const decimalDigit = stringNum.split('.')[1];
+                let numFormatted;
+                if(isNaN(intergerDigit)){
+                    numFormatted = '';
+                }
+                else{
+                    numFormatted = intergerDigit.toLocaleString('en',{maximumFractionDigits: 0});
+                }
+                if(decimalDigit!= null){
+                    return `${numFormatted}.${decimalDigit}`;
+                }
+                else{ return numFormatted;}
+            }
+
+            this.clearAllResult = function(){
+                this.currentResult='';
+                this.previousResult='';
+                this.operation='';
+                this.arraytemp=[];
+                this.displayNum();
+                
+            }
+
+            this.remove = function(){
+                this.currentResult = this.currentResult.substring(0,this.currentResult.length - 1);
+                this.displayNum();
+            }
+
+            this.clear = function(){
+                this.currentResult = '';
+                this.displayNum();
+            }
+
+            this.addOperation = function(){
+                this.calculator('+');
+                this.displayNum();
+            }
+
+            this.substractOperation = function(){
+                this.calculator('-');
+                this.displayNum();
+            }
+
+            this.multiplyOperation = function(){
+                this.calculator('*');
+                this.displayNum();
+            }
+            this.divideOpertion = function(){
+                this.calculator('/');
+                this.displayNum();
+            }
+
+            this.equal = function(){
+                if(this.currentResult==='') return;
+                if(this.previousResult !== ''){
+                    this.arraytemp.push(this.currentResult);
+                    this.currentResult = eval(this.arraytemp.join('')).toString();
+                    this.previousResult ='';
+                    this.arraytemp=[];
+                    this.operation = undefined;
+                }
+                else{
+                    this.currentResult = eval(this.currentResult).toString();
+                }
+                this.displayNum();
+            }
+           
+            this.calculator = function(operation){
+                if(this.currentResult==='' && this.previousResult=='')return;
+                this.operation = operation;
+                if(this.arraytemp===[]) return;
+                if(this.currentResult===''){
+                    this.arraytemp.splice(1,1,operation);
+                }
+                else{
+                    if(this.previousResult===''){
+                        this.previousResult = this.currentResult;
+                        this.arraytemp.push(this.previousResult,operation);
+                    }
+                    else{
+                        this.arraytemp.push(this.currentResult);
+                        this.previousResult = eval(this.arraytemp.join('')).toString();
+                        this.arraytemp.splice(0,3,this.previousResult,operation);
+                    }
+                }
+                
+                this.currentResult='';
+            }
+            document.querySelectorAll(settings.btnSelector).forEach(function(element){
+                element.addEventListener('click',self.onButtonClick);
+            })
+
+             // handle keyboard event
+             document.addEventListener('keypress',(e)=>{
+                if(this.currentResult.length==15) return;
+                if(e.keyCode>=48 && e.keyCode<=57 || e.keyCode==46){
+                    self.appendNum(e.key);
+                }
+                else{
+                    switch(e.keyCode){
+                        case 43:
+                            self.addOperation();
+                            break;
+                        case 45:
+                            self.substractOperation();
+                            break;
+                        case 42:
+                            self.multiplyOperation();
+                            break;
+                        case 47:
+                            self.divideOpertion();
+                            break;
+                        case 13:
+                            self.equal();
+                            break;
+                        default: return;
+                            
+                    };
+                }
+            })
+        
+        }
+            const calculator = new Calculator({
+            resultPanelSelector: '#total',
+            preTotal:'.previous-total',
+            btnSelector:'.btn',
+        });
+    </script>
+</body>
+</html>
