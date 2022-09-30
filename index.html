@@ -247,7 +247,7 @@
                 if(this.previousResult !== ''){
                     if(clickEqual==false){
                         this.arraytemp.push(this.currentResult);
-                        this.currentResult = eval(this.arraytemp.join('')).toString(); console.log(this.arraytemp)
+                        this.currentResult = eval(this.arraytemp.join('')).toString();
                         clickEqual =true;
                     }
                     else{
@@ -278,7 +278,6 @@
                     if(this.previousResult===''){
                         this.previousResult = this.currentResult;
                         this.arraytemp.push(this.previousResult,operation);
-                        console.log(this.arraytemp)
 
                     }
                     else{
