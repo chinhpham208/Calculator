@@ -127,6 +127,7 @@
             this.operation =undefined;
             this.arraytemp=[];
             var self = this;
+            let clickEqual=false;
 
             this.onButtonClick = function(e){
                 var arrNum=['.','0','1','2','3','4','5','6','7','8','9'];
@@ -164,6 +165,10 @@
             this.appendNum = function(num){
                 // The length of number only = 16
                 if(this.currentResult.length === 16) return;
+                if(clickEqual==true){
+                    clickEqual=false;
+                    this.clearAllResult();
+                }
                 // Only 1 '.' is allowed on the number
                 if(num ==='.' && this.currentResult.includes('.')) return;
                 this.currentResult += num;
@@ -177,9 +182,14 @@
                 else{
                     this.result.value = this.formatNum(this.currentResult);
                 }
-                
                 if(this.operation != null){
-                    this.preTotal.innerText = `${this.formatNum(this.previousResult)}  ${this.operation}`;
+                    if(clickEqual==true){
+                        this.preTotal.innerText = `${this.arraytemp.join('  ')}  =`;
+                    }
+                    else{
+                        this.preTotal.innerText = `${this.formatNum(this.previousResult)}  ${this.operation}`;
+
+                    }
                 }
                 else{
                     this.preTotal.innerText = '';
@@ -208,6 +218,7 @@
                 this.previousResult='';
                 this.operation='';
                 this.arraytemp=[];
+                clickEqual = false;
                 this.displayNum();
                 
             }
@@ -234,22 +245,32 @@
             this.equal = function(){
                 if(this.currentResult==='') return;
                 if(this.previousResult !== ''){
-                    this.arraytemp.push(this.currentResult);
-                    this.currentResult = eval(this.arraytemp.join('')).toString();
-                    this.previousResult ='';
-                    this.arraytemp=[];
-                    this.operation = undefined;
+                    if(clickEqual==false){
+                        this.arraytemp.push(this.currentResult);
+                        this.currentResult = eval(this.arraytemp.join('')).toString(); console.log(this.arraytemp)
+                        clickEqual =true;
+                    }
+                    else{
+                        this.arraytemp.splice(0,1,this.currentResult);
+                        this.currentResult = this.currentResult = eval(this.arraytemp.join('')).toString();
+                    }
                 }
-                else{
-                    this.currentResult = eval(this.currentResult).toString();
-                }
+               
                 this.displayNum();
             }
            
             this.calculator = function(operation){
                 if(this.currentResult==='' && this.previousResult=='')return;
                 this.operation = operation;
+               
                 if(this.arraytemp===[]) return;
+
+                if(clickEqual==true){
+                    clickEqual=false;
+                    this.previousResult='';
+                    this.arraytemp=[];
+                } 
+
                 if(this.currentResult===''){
                     this.arraytemp.splice(1,1,operation);
                 }
@@ -257,6 +278,8 @@
                     if(this.previousResult===''){
                         this.previousResult = this.currentResult;
                         this.arraytemp.push(this.previousResult,operation);
+                        console.log(this.arraytemp)
+
                     }
                     else{
                         this.arraytemp.push(this.currentResult);
