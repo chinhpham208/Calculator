@@ -154,6 +154,13 @@
                         break;
                     case 'equal':
                         self.equal();
+                        break;
+                    case 'removelast':
+                        self.remove();
+                        break;
+                    case 'clearpanel':
+                        self.clear();
+                        break;
                     default:
                         return;
                     }
@@ -221,6 +228,15 @@
                 this.clickEqual = false;
                 this.displayNum();
                 
+            }
+
+            this.remove = function(){
+                this.currentResult = this.currentResult.substring(0,this.currentResult.length - 1);
+                this.displayNum();
+            }
+            this.clear = function(){
+                this.currentResult = '';
+                this.displayNum();
             }
             
             this.addOperation = function(){
@@ -322,6 +338,8 @@
                         case 27:
                             self.clearAllResult();
                             break;
+                        case 8:
+                            self.remove();
                         default: return;
                             
                     };
